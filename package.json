@@ -1,0 +1,23 @@
+{
+  "name": "pasteleria-1.0",
+  "version": "1.0.0",
+  "description": "Proyecto de pasteleria prueba 1",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asisrael/Pasteleria1.0.git"
+  },
+  "author": "Israel Vasquez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Asisrael/Pasteleria1.0/issues"
+  },
+  "homepage": "https://github.com/Asisrael/Pasteleria1.0#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
