@@ -1,3 +1,3 @@
 exports.proyectoHome = (req,res)=>{
-    res.send('index') ;
+    res.send('index2') ;
 }
