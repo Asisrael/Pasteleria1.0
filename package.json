@@ -4,7 +4,7 @@
   "description": "Proyecto de pasteleria prueba 1",
   "main": "index.js",
   "scripts": {
-    "start":"nodemon ./index.js"
+    "start": "nodemon ./index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,19 @@
   },
   "homepage": "https://github.com/Asisrael/Pasteleria1.0#readme",
   "dependencies": {
+    "axios": "^0.21.1",
+    "connect-mongo": "^2.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.7"
+    "express-session": "^1.17.2",
+    "express-validator": "^6.12.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "nodemon": "^2.0.7",
+    "shortid": "^2.2.16"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
