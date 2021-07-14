@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MaquinariasSchema = mongoose.Schema({
+const TipoRecetasSchema = mongoose.Schema({
     nombre: {
         type: String,
         trim: true,
@@ -22,4 +22,4 @@ const MaquinariasSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Maquinarias', MaquinariasSchema);
+module.exports = mongoose.model('TipoRecetas', TipoRecetasSchema);

@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
-const MaquinariasSchema = mongoose.Schema({
-    nombre: {
+const RecetasVentasSchema = mongoose.Schema({
+    receta: {
+        type: Array,
+        required: true
+    },
+    costo_receta:{
         type: String,
         trim: true,
         required: true
@@ -22,4 +26,4 @@ const MaquinariasSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Maquinarias', MaquinariasSchema);
+module.exports = mongoose.model('RecetasVentas', RecetasVentasSchema);

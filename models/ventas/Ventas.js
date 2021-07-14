@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const ComprasSchema = mongoose.Schema({
-    fecha_compra: {
+const VentasSchema = mongoose.Schema({
+    fecha_venta: {
         type: Date,
         required: true,
     },
@@ -11,10 +11,14 @@ const ComprasSchema = mongoose.Schema({
         trim: true,
         required: true,
     },
-    iva_compra: {
+    iva_venta: {
         type: String,
         trim: true,
         required: true,
+    },
+    descuento: {
+        type: String,
+        trim: true,
     },
     registro: {
         type: Date,
@@ -30,9 +34,9 @@ const ComprasSchema = mongoose.Schema({
         required: true,
         default: 'ACTIVO',
     },
-    proveedor: {
+    cliente: {
         type: Schema.ObjectId,
-        ref: 'Proveedores',
+        ref: 'Clientes',
         required: true,
     },
     responsable: {
@@ -42,4 +46,4 @@ const ComprasSchema = mongoose.Schema({
     },
 });
 
-module.exports = mongoose.model('Compras', ComprasSchema);
+module.exports = mongoose.model('Ventas', VentasSchema);

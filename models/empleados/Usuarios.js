@@ -1,11 +1,24 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const ProveedoresSchema = mongoose.Schema({
+const UsuariosSchema = mongoose.Schema({
+    user: {
+        type: String,
+        trim: true,
+        required: true,
+        trim: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        trim: true,
+        required: true,
+        trim: true,
+    },
     nombre: {
         type: String,
         trim: true,
-        required: true
+        required: true,
     },
     telefono: {
         type: String,
@@ -15,18 +28,18 @@ const ProveedoresSchema = mongoose.Schema({
     correo: {
         type: String,
         trim: true,
-        required: true,
     },
-    nit: {
+    cui: {
         type: String,
         trim: true,
         required: true,
     },
-    direccion: {
+    contratacion: {
         type: String,
         trim: true,
+        required: true
     },
-    codigo_proveedor: {
+    puesto: {
         type: String,
         trim: true,
     },
@@ -38,22 +51,6 @@ const ProveedoresSchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    estado: {
-        type: String,
-        trim: true,
-        required: true,
-        default: 'ACTIVO',
-    },
-    marca: {
-        type: Schema.ObjectId,
-        ref: 'Marcas',
-        required: true,
-    },
-    divisa: {
-        type: Schema.ObjectId,
-        ref: 'Divisas',
-        required: true,
-    }
 });
 
-module.exports = mongoose.model('Proveedores', ProveedoresSchema);
+module.exports = mongoose.model('Usuarios', UsuariosSchema);

@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const MaquinariasSchema = mongoose.Schema({
+const RolesSchema = mongoose.Schema({
     nombre: {
         type: String,
         trim: true,
-        required: true
+        required: true,
     },
     registro: {
         type: Date,
@@ -22,4 +22,4 @@ const MaquinariasSchema = mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Maquinarias', MaquinariasSchema);
+module.exports = mongoose.model('Roles', RolesSchema);

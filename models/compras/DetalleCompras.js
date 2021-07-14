@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const ComprasSchema = mongoose.Schema({
-    fecha_compra: {
-        type: Date,
-        required: true,
-    },
-    total: {
+const DetalleComprasSchema = mongoose.Schema({
+    cantidad: {
         type: String,
         trim: true,
         required: true,
     },
-    iva_compra: {
+    subtotal: {
         type: String,
         trim: true,
         required: true,
@@ -30,16 +26,31 @@ const ComprasSchema = mongoose.Schema({
         required: true,
         default: 'ACTIVO',
     },
-    proveedor: {
+    compra: {
         type: Schema.ObjectId,
-        ref: 'Proveedores',
+        ref: 'Compras',
         required: true,
     },
-    responsable: {
+    insumos: {
         type: Schema.ObjectId,
-        ref: 'Usuarios',
+        ref: 'Insumos',
+        required: true,
+    },
+    decoraciones: {
+        type: Schema.ObjectId,
+        ref: 'MateriaDecoraciones',
+        required: true,
+    },
+    pasteles: {
+        type: Schema.ObjectId,
+        ref: 'MateriaPasteles',
+        required: true,
+    },
+    variedades: {
+        type: Schema.ObjectId,
+        ref: 'Variedades',
         required: true,
     },
 });
 
-module.exports = mongoose.model('Compras', ComprasSchema);
+module.exports = mongoose.model('DetalleCompras', DetalleComprasSchema);

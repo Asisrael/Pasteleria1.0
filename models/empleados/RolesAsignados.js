@@ -1,21 +1,7 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const ComprasSchema = mongoose.Schema({
-    fecha_compra: {
-        type: Date,
-        required: true,
-    },
-    total: {
-        type: String,
-        trim: true,
-        required: true,
-    },
-    iva_compra: {
-        type: String,
-        trim: true,
-        required: true,
-    },
+const RolesAsignadosSchema = mongoose.Schema({
     registro: {
         type: Date,
         default: Date.now()
@@ -30,16 +16,16 @@ const ComprasSchema = mongoose.Schema({
         required: true,
         default: 'ACTIVO',
     },
-    proveedor: {
+    roles: {
         type: Schema.ObjectId,
-        ref: 'Proveedores',
+        ref: 'Roles',
         required: true,
     },
-    responsable: {
+    usuarios: {
         type: Schema.ObjectId,
         ref: 'Usuarios',
         required: true,
-    },
+    }
 });
 
-module.exports = mongoose.model('Compras', ComprasSchema);
+module.exports = mongoose.model('RolesAsignados', RolesAsignadosSchema);
