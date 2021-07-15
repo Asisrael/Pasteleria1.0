@@ -1,0 +1,24 @@
+const RolesAsignados = require('../../models/empleados/RolesAsignados');
+const jwt = require('jsonwebtoken');
+const { validationResult } = require('express-validator');
+const md5 = require('md5')
+
+exports.mostrarRolesAsignados = async (req, res) => {
+    res.send('tipos de cliente')
+}
+
+exports.mostrarRolesAsignadosPaginados = async (req, res) => {
+
+}
+
+exports.crearRolesAsignados = async (req, res) => {
+
+}
+
+exports.actualizarRolesAsignados = async (req, res) => {
+
+}
+
+exports.eliminarRolesAsignados = async (req, res) => {
+    
+}
