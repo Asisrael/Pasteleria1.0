@@ -1,4 +1,4 @@
-const Maquinaria = require('../../models/maquinaria/Maquinaria');
+const Maquinaria = require('../../models/maquinaria/Maquinarias');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const md5 = require('md5')
@@ -20,5 +20,5 @@ exports.actualizarMaquinaria = async (req, res) => {
 }
 
 exports.eliminarMaquinaria = async (req, res) => {
-    
+
 }

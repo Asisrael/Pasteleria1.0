@@ -1,24 +1,24 @@
-const CreditosVentas = require('../../models/creditos/CreditosVentas');
+const CreditoVentas = require('../../models/creditos/CreditoVentas');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
-exports.mostrarCreditosVentas = async (req, res) => {
-    res.send('tipos de cliente')
-}
-
-exports.mostrarCreditosVentasPaginados = async (req, res) => {
+exports.mostrarCreditoVentas = async (req, res) => {
 
 }
 
-exports.crearCreditosVentas = async (req, res) => {
+exports.mostrarCreditoVentasPaginados = async (req, res) => {
 
 }
 
-exports.actualizarCreditosVentas = async (req, res) => {
+exports.crearCreditoVentas = async (req, res) => {
 
 }
 
-exports.eliminarCreditosVentas = async (req, res) => {
-    
+exports.actualizarCreditoVentas = async (req, res) => {
+
+}
+
+exports.eliminarCreditoVentas = async (req, res) => {
+
 }

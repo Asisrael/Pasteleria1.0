@@ -8,3 +8,23 @@ mongoose.connection.on('error', (error) => {
 })
 
 //importar los modelos
+
+//caja
+
+//clientes
+
+//compras
+
+//creditos
+
+//empleados
+
+//inventario
+
+//maquinaria
+
+//proveedores
+
+//recetas
+
+//ventas
