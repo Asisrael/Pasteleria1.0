@@ -22,3 +22,6 @@ exports.actualizarClientes = async (req, res) => {
 exports.eliminarClientes = async (req, res) => {
 
 }
+exports.activarClientes = async (req, res) => {
+
+}

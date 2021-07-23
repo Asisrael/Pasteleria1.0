@@ -22,3 +22,6 @@ exports.actualizarMateriaDecoraciones = async (req, res) => {
 exports.eliminarMateriaDecoraciones = async (req, res) => {
     
 }
+exports.activarMateriaDecoraciones = async (req, res) => {
+
+}

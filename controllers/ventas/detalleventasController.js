@@ -22,3 +22,6 @@ exports.actualizarDetalleVentas = async (req, res) => {
 exports.eliminarDetalleVentas = async (req, res) => {
     
 }
+exports.activarDetalleVentas = async (req, res) => {
+
+}

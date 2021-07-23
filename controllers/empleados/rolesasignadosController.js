@@ -22,3 +22,6 @@ exports.actualizarRolesAsignados = async (req, res) => {
 exports.eliminarRolesAsignados = async (req, res) => {
 
 }
+exports.activarRolesAsignados = async (req, res) => {
+
+}

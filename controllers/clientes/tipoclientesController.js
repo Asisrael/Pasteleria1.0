@@ -119,3 +119,30 @@ exports.eliminarTipoClientes = async (req, res) => {
         }
     )
 }
+exports.activarTipoClientes = async (req, res) => {
+    const body = req.body;
+    TipoClientes.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar el tipo de cliente',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+}

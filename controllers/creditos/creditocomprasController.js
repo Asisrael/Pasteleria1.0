@@ -22,3 +22,6 @@ exports.actualizarCreditoCompras = async (req, res) => {
 exports.eliminarCreditoCompras = async (req, res) => {
 
 }
+exports.activarCreditoCompras = async (req, res) => {
+
+}

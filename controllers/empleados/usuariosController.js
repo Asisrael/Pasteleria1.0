@@ -74,3 +74,6 @@ exports.actualizarUsuario = async (req, res) => {
 exports.eliminarUsuario = async (req, res) => {
 
 }
+exports.activarUsuario = async (req, res) => {
+
+}

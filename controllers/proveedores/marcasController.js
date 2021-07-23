@@ -119,3 +119,31 @@ exports.eliminarMarcas = async (req, res) => {
         }
     )
 }
+exports.activarMarcas = async (req, res) => {
+    const body = req.body;
+    Marcas.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar la marca',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+
+}

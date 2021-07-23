@@ -22,3 +22,6 @@ exports.actualizarVariedades = async (req, res) => {
 exports.eliminarVariedades = async (req, res) => {
     
 }
+exports.activarVariedades = async (req, res) => {
+
+}

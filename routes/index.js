@@ -70,6 +70,7 @@ module.exports = function () {
     router.post('/aperturas_crear', aperturasController.crearAperturas);
     router.post('/aperturas_actualizar', aperturasController.actualizarAperturas);
     router.post('/aperturas_eliminar', aperturasController.eliminarAperturas);
+    router.post('/aperturas_activar', aperturasController.activarAperturas);
 
     //cajachica
     router.get('/cajachica', cajachicasController.mostrarCajaChicas);
@@ -77,6 +78,7 @@ module.exports = function () {
     router.post('/cajachica_crear', cajachicasController.crearCajaChicas);
     router.post('/cajachica_actualizar', cajachicasController.actualizarCajaChicas);
     router.post('/cajachica_eliminar', cajachicasController.eliminarCajaChicas);
+    router.post('/cajachica_activar', cajachicasController.activarCajaChicas);
 
     //cierres
     router.get('/cierres', cierresController.mostrarCierres);
@@ -84,6 +86,7 @@ module.exports = function () {
     router.post('/cierres_crear', cierresController.crearCierres);
     router.post('/cierres_actualizar', cierresController.actualizarCierres);
     router.post('/cierres_eliminar', cierresController.eliminarCierres);
+    router.post('/cierres_activar', cierresController.activarCierres);
 
     //cuenta bancaria
     router.get('/cuentabancaria', cuentabancariaController.mostrarCuentaBancaria);
@@ -91,6 +94,7 @@ module.exports = function () {
     router.post('/cuentabancaria_crear', cuentabancariaController.crearCuentaBancaria);
     router.post('/cuentabancaria_actualizar', cuentabancariaController.actualizarCuentaBancaria);
     router.post('/cuentabancaria_eliminar', cuentabancariaController.eliminarCuentaBancaria);
+    router.post('/cuentabancaria_activar', cuentabancariaController.activarCuentaBancaria);
 
     //ingresos
     router.get('/ingresos', ingresocajasController.mostrarIngresoCajas);
@@ -98,6 +102,7 @@ module.exports = function () {
     router.post('/ingresos_crear', ingresocajasController.crearIngresoCajas);
     router.post('/ingresos_actualizar', ingresocajasController.actualizarIngresoCajas);
     router.post('/ingresos_eliminar', ingresocajasController.eliminarIngresoCajas);
+    router.post('/ingresos_activar', ingresocajasController.activarIngresoCajas);
 
     //retiros
     router.get('/retiros', retirocajasController.mostrarRetiroCajas);
@@ -105,6 +110,7 @@ module.exports = function () {
     router.post('/retiros_crear', retirocajasController.crearRetiroCajas);
     router.post('/retiros_actualizar', retirocajasController.actualizarRetiroCajas);
     router.post('/retiros_eliminar', retirocajasController.eliminarRetiroCajas);
+    router.post('/retiros_activar', retirocajasController.activarRetiroCajas);
 
     //CLIENTES
     //clientes
@@ -113,6 +119,8 @@ module.exports = function () {
     router.post('/clientes_crear', clientesController.crearClientes);
     router.post('/clientes_actualizar', clientesController.actualizarClientes);
     router.post('/clientes_eliminar', clientesController.eliminarClientes);
+    router.post('/clientes_activar', clientesController.activarClientes);
+
 
     //tipo clientes
     router.get('/tipoclientes', tipoclientesController.mostrarTipoClientes);
@@ -120,6 +128,7 @@ module.exports = function () {
     router.post('/tipoclientes_crear', tipoclientesController.crearTipoClientes);
     router.post('/tipoclientes_actualizar', tipoclientesController.actualizarTipoClientes);
     router.post('/tipoclientes_eliminar', tipoclientesController.eliminarTipoClientes);
+    router.post('/tipoclientes_activar', tipoclientesController.activarTipoClientes);
 
     //COMPRAS
     //compras
@@ -128,6 +137,7 @@ module.exports = function () {
     router.post('/compras_crear', comprasController.crearCompras);
     router.post('/compras_actualizar', comprasController.actualizarCompras);
     router.post('/compras_eliminar', comprasController.eliminarCompras);
+    router.post('/compras_activar', comprasController.activarCompras);
 
     //detalle de compras
     router.get('/detallecompras', detallecomprasController.mostrarDetalleCompras);
@@ -135,6 +145,7 @@ module.exports = function () {
     router.post('/detallecompras_crear', detallecomprasController.crearDetalleCompras);
     router.post('/detallecompras_actualizar', detallecomprasController.actualizarDetalleCompras);
     router.post('/detallecompras_eliminar', detallecomprasController.eliminarDetalleCompras);
+    router.post('/detallecompras_activar', detallecomprasController.activarDetalleCompras);
 
     //CREDITOS
     //creditos compras
@@ -143,6 +154,7 @@ module.exports = function () {
     router.post('/creditocompras_crear', creditoComprasController.crearCreditoCompras);
     router.post('/creditocompras_actualizar', creditoComprasController.actualizarCreditoCompras);
     router.post('/creditocompras_eliminar', creditoComprasController.eliminarCreditoCompras);
+    router.post('/creditocompras_activar', creditoComprasController.activarCreditoCompras);
 
     //creditos ventas
     router.get('/creditoventas', creditoVentasController.mostrarCreditoVentas);
@@ -150,6 +162,7 @@ module.exports = function () {
     router.post('/creditoventas_crear', creditoVentasController.crearCreditoVentas);
     router.post('/creditoventas_actualizar', creditoVentasController.actualizarCreditoVentas);
     router.post('/creditoventas_eliminar', creditoVentasController.eliminarCreditoVentas);
+    router.post('/creditoventas_activar', creditoVentasController.activarCreditoVentas);
 
     //EMPLEADOS
     //roles asignados
@@ -158,6 +171,7 @@ module.exports = function () {
     router.post('/rolesasignados_crear', rolesasignadosController.crearRolesAsignados);
     router.post('/rolesasignados_actualizar', rolesasignadosController.actualizarRolesAsignados);
     router.post('/rolesasignados_eliminar', rolesasignadosController.eliminarRolesAsignados);
+    router.post('/rolesasignados_activar', rolesasignadosController.activarRolesAsignados);
 
     //roles
     router.get('/roles', rolesController.mostrarRoles);
@@ -165,6 +179,7 @@ module.exports = function () {
     router.post('/roles_crear', rolesController.crearRoles);
     router.post('/roles_actualizar', rolesController.actualizarRoles);
     router.post('/roles_eliminar', rolesController.eliminarRoles);
+    router.post('/roles_activar', rolesController.activarRoles);
 
     //usuarios
     router.get('/usuarios', usuariosController.mostrarUsuarios);
@@ -172,6 +187,7 @@ module.exports = function () {
     router.post('/usuarios_crear', usuariosController.crearUsuario);
     router.post('/usuarios_actualizar', usuariosController.actualizarUsuario);
     router.post('/usuarios_eliminar', usuariosController.eliminarUsuario);
+    router.post('/usuarios_activar', usuariosController.activarUsuario);
 
     //INVENTARIO
     //insumos
@@ -180,6 +196,7 @@ module.exports = function () {
     router.post('/insumos_crear', insumosController.crearInsumos);
     router.post('/insumos_actualizar', insumosController.actualizarInsumos);
     router.post('/insumos_eliminar', insumosController.eliminarInsumos);
+    router.post('/insumos_activar', insumosController.activarInsumos);
 
     //materiadecoraciones
     router.get('/materiadecoraciones', materiadecoracionesController.mostrarMateriaDecoraciones);
@@ -187,6 +204,7 @@ module.exports = function () {
     router.post('/materiadecoraciones_crear', materiadecoracionesController.crearMateriaDecoraciones);
     router.post('/materiadecoraciones_actualizar', materiadecoracionesController.actualizarMateriaDecoraciones);
     router.post('/materiadecoraciones_eliminar', materiadecoracionesController.eliminarMateriaDecoraciones);
+    router.post('/materiadecoraciones_activar', materiadecoracionesController.activarMateriaDecoraciones);
 
     //materiapasteles
     router.get('/materiapasteles', materiapastelesController.mostrarMateriaPasteles);
@@ -194,6 +212,7 @@ module.exports = function () {
     router.post('/materiapasteles_crear', materiapastelesController.crearMateriaPasteles);
     router.post('/materiapasteles_actualizar', materiapastelesController.actualizarMateriaPasteles);
     router.post('/materiapasteles_eliminar', materiapastelesController.eliminarMateriaPasteles);
+    router.post('/materiapasteles_activar', materiapastelesController.activarMateriaPasteles);
 
     //variedades
     router.get('/variedades', variedadesController.mostrarVariedades);
@@ -201,6 +220,7 @@ module.exports = function () {
     router.post('/variedades_crear', variedadesController.crearVariedades);
     router.post('/variedades_actualizar', variedadesController.actualizarVariedades);
     router.post('/variedades_eliminar', variedadesController.eliminarVariedades);
+    router.post('/variedades_activar', variedadesController.activarVariedades);
 
     //MAQUINARIA
     //maquinaria
@@ -209,6 +229,7 @@ module.exports = function () {
     router.post('/maquinaria_crear', maquinariaController.crearMaquinaria);
     router.post('/maquinaria_actualizar', maquinariaController.actualizarMaquinaria);
     router.post('/maquinaria_eliminar', maquinariaController.eliminarMaquinaria);
+    router.post('/maquinaria_activar', maquinariaController.activarMaquinaria);
 
     //PROVEEDORES
     //divisas
@@ -217,6 +238,7 @@ module.exports = function () {
     router.post('/divisas_crear', divisasController.crearDivisas);
     router.post('/divisas_actualizar', divisasController.actualizarDivisas);
     router.post('/divisas_eliminar', divisasController.eliminarDivisas);
+    router.post('/divisas_activar', divisasController.activarDivisas);
 
     //marcas
     router.get('/marcas', marcasController.mostrarMarcas);
@@ -224,6 +246,7 @@ module.exports = function () {
     router.post('/marcas_crear', marcasController.crearMarcas);
     router.post('/marcas_actualizar', marcasController.actualizarMarcas);
     router.post('/marcas_eliminar', marcasController.eliminarMarcas);
+    router.post('/marcas_activar', marcasController.activarMarcas);
 
     //proveedores
     router.get('/proveedores', proveedoresController.mostrarProveedores);
@@ -231,7 +254,7 @@ module.exports = function () {
     router.post('/proveedores_crear', proveedoresController.crearProveedores);
     router.post('/proveedores_actualizar', proveedoresController.actualizarProveedores);
     router.post('/proveedores_eliminar', proveedoresController.eliminarProveedores);
-
+    router.post('/proveedores_activar', proveedoresController.activarProveedores);
     //RECETAS
     //recetas
     router.get('/recetas', recetasController.mostrarRecetas);
@@ -239,6 +262,7 @@ module.exports = function () {
     router.post('/recetas_crear', recetasController.crearRecetas);
     router.post('/recetas_actualizar', recetasController.actualizarRecetas);
     router.post('/recetas_eliminar', recetasController.eliminarRecetas);
+    router.post('/recetas_activar', recetasController.activarRecetas);
 
     //recetas ventas
     router.get('/recetasventas', recetasventasController.mostrarRecetasVentas);
@@ -246,6 +270,7 @@ module.exports = function () {
     router.post('/recetasventas_crear', recetasventasController.crearRecetasVentas);
     router.post('/recetasventas_actualizar', recetasventasController.actualizarRecetasVentas);
     router.post('/recetasventas_eliminar', recetasventasController.eliminarRecetasVentas);
+    router.post('/recetasventas_activar', recetasventasController.activarRecetasVentas);
 
     //tipo recetas
     router.get('/tiporecetas', tiporecetasController.mostrarTipoRecetas);
@@ -253,6 +278,7 @@ module.exports = function () {
     router.post('/tiporecetas_crear', tiporecetasController.crearTipoRecetas);
     router.post('/tiporecetas_actualizar', tiporecetasController.actualizarTipoRecetas);
     router.post('/tiporecetas_eliminar', tiporecetasController.eliminarTipoRecetas);
+    router.post('/tiporecetas_activar', tiporecetasController.activarTipoRecetas);
 
     //VENTAS
     //ventas
@@ -261,6 +287,7 @@ module.exports = function () {
     router.post('/ventas_crear', ventasController.crearVentas);
     router.post('/ventas_actualizar', ventasController.actualizarVentas);
     router.post('/ventas_eliminar', ventasController.eliminarVentas);
+    router.post('/ventas_activar', ventasController.activarVentas);
 
     //detalle de ventas
     router.get('/detalleventas', detalleventasController.mostrarDetalleVentas);
@@ -268,6 +295,7 @@ module.exports = function () {
     router.post('/detalleventas_crear', detalleventasController.crearDetalleVentas);
     router.post('/detalleventas_actualizar', detalleventasController.actualizarDetalleVentas);
     router.post('/detalleventas_eliminar', detalleventasController.eliminarDetalleVentas);
+    router.post('/detalleventas_activar', detalleventasController.activarDetalleVentas);
 
 
     //RUTAS DE AUTENTICACION DE USUARIOS Y CONSUMO DE API

@@ -22,3 +22,6 @@ exports.actualizarMateriaPasteles = async (req, res) => {
 exports.eliminarMateriaPasteles = async (req, res) => {
     
 }
+exports.activarMateriaPasteles = async (req, res) => {
+
+}

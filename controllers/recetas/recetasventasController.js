@@ -22,3 +22,6 @@ exports.actualizarRecetasVentas = async (req, res) => {
 exports.eliminarRecetasVentas = async (req, res) => {
     
 }
+exports.activarRecetasVentas = async (req, res) => {
+
+}

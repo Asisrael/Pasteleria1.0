@@ -22,3 +22,6 @@ exports.actualizarCierres = async (req, res) => {
 exports.eliminarCierres = async (req, res) => {
 
 }
+exports.activarCierres = async (req, res) => {
+
+}

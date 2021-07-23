@@ -22,3 +22,6 @@ exports.actualizarRetiroCajas = async (req, res) => {
 exports.eliminarRetiroCajas = async (req, res) => {
 
 }
+exports.activarRetiroCajas = async (req, res) => {
+
+}

@@ -22,3 +22,6 @@ exports.actualizarCuentaBancaria = async (req, res) => {
 exports.eliminarCuentaBancaria = async (req, res) => {
 
 }
+exports.activarCuentaBancaria = async (req, res) => {
+
+}

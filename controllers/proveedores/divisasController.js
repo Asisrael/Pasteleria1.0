@@ -78,7 +78,7 @@ exports.actualizarDivisas = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo actualizar la marca',
+                    msg: 'No se pudieron actualizar las divisas',
                     err
                 });
             }
@@ -106,7 +106,7 @@ exports.eliminarDivisas = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo eliminar la marca',
+                    msg: 'No se pudieron eliminar las divisas',
                     err
                 });
             }
@@ -118,4 +118,32 @@ exports.eliminarDivisas = async (req, res) => {
             }
         }
     )
+}
+exports.activarDivisas = async (req, res) => {
+    const body = req.body;
+    Divisas.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudieron activar las divisas',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
+
 }

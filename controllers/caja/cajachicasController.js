@@ -23,3 +23,6 @@ exports.actualizarCajaChicas = async (req, res) => {
 exports.eliminarCajaChicas = async (req, res) => {
 
 }
+exports.activarCajaChicas = async (req, res) => {
+
+}

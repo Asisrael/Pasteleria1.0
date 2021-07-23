@@ -23,3 +23,6 @@ exports.actualizarAperturas = async (req, res) => {
 exports.eliminarAperturas = async (req, res) => {
 
 }
+exports.activarAperturas = async (req, res) => {
+
+}
