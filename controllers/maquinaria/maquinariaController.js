@@ -4,7 +4,14 @@ const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
 exports.mostrarMaquinaria = async (req, res) => {
-    res.send('tipos de cliente')
+    const tipos = await Maquinaria.find();
+
+    if (tipos.length === 0) {
+        return res.send('No se encontraro la  maquinaria');
+    }
+    else {
+        res.send(tipos);
+    }
 }
 
 exports.mostrarMaquinariaPaginados = async (req, res) => {
@@ -37,7 +44,7 @@ exports.actualizarMaquinaria = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo actualizar ela maquinaria',
+                    msg: 'No se pudo actualizar la maquinaria',
                     err
                 });
             }
