@@ -12,7 +12,7 @@ exports.mostrarUsuariosPaginados = async (req, res) => {
 
 }
 
-exports.crearUsuario = async (req, res) => {
+exports.crearUsuarios = async (req, res) => {
 
     console.log(req.body)
 
@@ -67,13 +67,44 @@ exports.crearUsuario = async (req, res) => {
     }
 }
 
-exports.actualizarUsuario = async (req, res) => {
-
+exports.actualizarUsuarios = async (req, res) => {
+    const body = req.body;
+    Usuarios.updateOne({ _id: body._id }, {
+        $set: {
+            user: req.body.user,
+            nombre: req.body.nombre,
+            telefono: req.body.telefono,
+            correo: req.body.correo,
+            password: req.body.password,
+            cui: req.body.cui,
+            contratacion: req.body.contratacion,
+            puesto: req.body.puesto,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar el usuario',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
 
-exports.eliminarUsuario = async (req, res) => {
+exports.eliminarUsuarios = async (req, res) => {
 
 }
-exports.activarUsuario = async (req, res) => {
+exports.activarUsuarios = async (req, res) => {
 
 }
