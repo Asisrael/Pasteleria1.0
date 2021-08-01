@@ -184,10 +184,10 @@ module.exports = function () {
     //usuarios
     router.get('/usuarios', usuariosController.mostrarUsuarios);
     router.get('/usuarios_paginar', usuariosController.mostrarUsuariosPaginados);
-    router.post('/usuarios_crear', usuariosController.crearUsuario);
-    router.post('/usuarios_actualizar', usuariosController.actualizarUsuario);
-    router.post('/usuarios_eliminar', usuariosController.eliminarUsuario);
-    router.post('/usuarios_activar', usuariosController.activarUsuario);
+    router.post('/usuarios_crear', usuariosController.crearUsuarios);
+    router.post('/usuarios_actualizar', usuariosController.actualizarUsuarios);
+    router.post('/usuarios_eliminar', usuariosController.eliminarUsuarios);
+    router.post('/usuarios_activar', usuariosController.activarUsuarios);
 
     //INVENTARIO
     //insumos
