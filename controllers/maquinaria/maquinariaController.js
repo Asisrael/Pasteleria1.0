@@ -21,6 +21,7 @@ exports.mostrarMaquinariaPaginados = async (req, res) => {
 exports.crearMaquinaria = async (req, res) => {
     const tipos = new Maquinaria({
         nombre: req.body.nombre,
+        frecuencia: req.body.frecuencia,
     });
 
     tipos.save(function (err, tipos) {
@@ -35,6 +36,7 @@ exports.actualizarMaquinaria = async (req, res) => {
     Maquinaria.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
+            frecuencia: body.frecuencia,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: body.estado
@@ -64,6 +66,7 @@ exports.eliminarMaquinaria = async (req, res) => {
     Maquinaria.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
+            frecuencia: body.frecuencia,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'INACTIVO'
@@ -92,6 +95,7 @@ exports.activarMaquinaria = async (req, res) => {
     Maquinaria.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
+            frecuencia: body.frecuencia,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'ACTIVO'

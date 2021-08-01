@@ -6,6 +6,11 @@ const MaquinariasSchema = mongoose.Schema({
         trim: true,
         required: true
     },
+    frecuencia: {
+        type: String,
+        trime: true,
+        required: true
+    },
     registro: {
         type: Date,
         default: Date.now()
