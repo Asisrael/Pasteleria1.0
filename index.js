@@ -1,5 +1,4 @@
 const express = require('express');
-const routes = require('./routes');
 const cors = require('cors');
 require('./config/db');
 const mongoose = require('mongoose');
@@ -7,6 +6,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 require('dotenv').config({ path: 'variables.env' });
+const routes = require('./routes/index');
 // Creando la app de express
 const app = express();
 

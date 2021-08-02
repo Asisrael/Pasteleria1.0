@@ -4,27 +4,62 @@ const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
 exports.mostrarProveedores = async (req, res) => {
-    const tipos = await Proveedores.find();
+    const proveedores = await Proveedores.find();
 
-    if (tipos.length === 0) {
+    if (proveedores.length === 0) {
         return res.send('No se encontraro el proveedor');
     }
     else {
-        res.send(tipos);
+        res.send(proveedores);
     }
 }
 exports.mostrarProveedoresPaginados = async (req, res) => {
-
+    let actualPage = parseInt(req.body.page);
+    let perPage = parseInt(req.body.perPage);
+    let showed = ((actualPage - 1) * perPage);
+    let filter = req.body.filter;
+    let order = req.body.order;
+    if (order === 'asc') {
+        order = -1;
+    }
+    else if (order === 'desc') {
+        order = 1
+    }
+    let totalPages;
+    let totalItems;
+    let mod;
+    Proveedores.count().then(function (count) {
+        totalItems = count;
+        mod = (totalItems % perPage);
+        if (mod === 0) {
+            totalPages = (totalItems / perPage);
+        }
+        else {
+            totalPages = parseInt(((totalItems / perPage) + 1));
+        }
+    })
+    const proveedores = await Proveedores.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
+    if (proveedores.length === 0) {
+        return res.send('No se encontraron proveedores');
+    }
+    else {
+        let pagination = {
+            data: proveedores,
+            actualPage: actualPage,
+            totalPages: totalPages
+        }
+        res.send(pagination);
+    }
 }
 
 exports.crearProveedores = async (req, res) => {
-    const tipos = new Proveedores({
+    const proveedores = new Proveedores({
         nombre: req.body.nombre,
     });
 
-    tipos.save(function (err, tipos) {
+    proveedores.save(function (err, proveedores) {
         if (err) return res.send(500, err.message);
-        res.status(200).jsonp(tipos);
+        res.status(200).jsonp(proveedores);
     });
 
 }
@@ -84,7 +119,7 @@ exports.eliminarProveedores = async (req, res) => {
             }
         }
     )
-    
+
 }
 exports.activarProveedores = async (req, res) => {
     const body = req.body;

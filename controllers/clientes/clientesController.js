@@ -15,7 +15,42 @@ exports.mostrarClientes = async (req, res) => {
 }
 
 exports.mostrarClientesPaginados = async (req, res) => {
-
+    let actualPage = parseInt(req.body.page);
+    let perPage = parseInt(req.body.perPage);
+    let showed = ((actualPage - 1) * perPage);
+    let filter = req.body.filter;
+    let order = req.body.order;
+    if (order === 'asc') {
+        order = -1;
+    }
+    else if (order === 'desc') {
+        order = 1
+    }
+    let totalPages;
+    let totalItems;
+    let mod;
+    Clientes.count().then(function (count) {
+        totalItems = count;
+        mod = (totalItems % perPage);
+        if (mod === 0) {
+            totalPages = (totalItems / perPage);
+        }
+        else {
+            totalPages = parseInt(((totalItems / perPage) + 1));
+        }
+    })
+    const clientes = await Clientes.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
+    if (clientes.length === 0) {
+        return res.send('No se encontraron clientes');
+    }
+    else {
+        let pagination = {
+            data: clientes,
+            actualPage: actualPage,
+            totalPages: totalPages
+        }
+        res.send(pagination);
+    }
 }
 
 exports.crearClientes = async (req, res) => {

@@ -40,7 +40,7 @@ exports.mostrarTipoRecetasPaginados = async (req, res) => {
         }
     })
     const tipos = await TipoRecetas.find().skip(showed).limit(perPage).lean().sort({ [filter]: order });
-    if (tipos.length === 1) {
+    if (tipos.length === 0) {
         return res.send('No se encontraron tipos de receta');
     }
     else {
