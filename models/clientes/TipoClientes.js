@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const TipoClientesSchema = mongoose.Schema({
-    tipo: {
+    nombre: {
         type: String,
         trim: true,
         required: true,
