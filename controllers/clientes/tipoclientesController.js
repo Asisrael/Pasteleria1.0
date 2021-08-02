@@ -39,7 +39,7 @@ exports.mostrarTipoClientesPaginados = async (req, res) => {
             totalPages = parseInt(((totalItems / perPage) + 1));
         }
     })
-    const tipos = await TipoClientes.find().skip(showed).limit(perPage).lean().sort({ [filter]: order });
+    const tipos = await TipoClientes.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
     if (tipos.length === 1) {
         return res.send('No se encontraron tipos de cliente');
     }

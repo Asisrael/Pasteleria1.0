@@ -10,8 +10,16 @@ mongoose.connection.on('error', (error) => {
 //importar los modelos
 
 //caja
+require('../models/caja/Aperturas');
+require('../models/caja/CajaChicas');
+require('../models/caja/Cierres');
+require('../models/caja/CuentaBancaria');
+require('../models/caja/IngresoCajas');
+require('../models/caja/RetiroCajas');
 
 //clientes
+require('../models/clientes/Clientes');
+require('../models/clientes/TipoClientes');
 
 //compras
 
@@ -22,8 +30,11 @@ mongoose.connection.on('error', (error) => {
 //inventario
 
 //maquinaria
+require('../models/maquinaria/Maquinarias');
 
 //proveedores
+require('../models/proveedores/Marcas');
+require('../models/proveedores/Proveedores');
 
 //recetas
 
