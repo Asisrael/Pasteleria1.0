@@ -33,6 +33,7 @@ require('../models/clientes/TipoClientes');
 require('../models/maquinaria/Maquinarias');
 
 //proveedores
+require('../models/proveedores/Divisas');
 require('../models/proveedores/Marcas');
 require('../models/proveedores/Proveedores');
 
