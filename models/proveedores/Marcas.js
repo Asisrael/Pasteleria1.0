@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const MarcasSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -21,5 +21,5 @@ const MarcasSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+MarcasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Marcas', MarcasSchema);

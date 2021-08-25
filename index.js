@@ -29,12 +29,12 @@ app.use(session({
 app.use('/', routes());
 
 // Va a correr en este puerto
-//app.listen(process.env.PUERTO);
+app.listen(process.env.PUERTO);
 
 //este codigo debe ir descomentado a la hora de subir a heroku
-const host = '0.0.0.0';
+/* const host = '0.0.0.0';
 const port = process.env.PORT;
 
 app.listen(port, host, () => {
     console.log('todo esta funcionando')
-});
+}); */

@@ -55,6 +55,7 @@ exports.mostrarProveedoresPaginados = async (req, res) => {
 exports.crearProveedores = async (req, res) => {
     const proveedores = new Proveedores({
         nombre: req.body.nombre,
+        
     });
 
     proveedores.save(function (err, proveedores) {

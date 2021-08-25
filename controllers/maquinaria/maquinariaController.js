@@ -56,6 +56,7 @@ exports.mostrarMaquinariaPaginados = async (req, res) => {
 exports.crearMaquinaria = async (req, res) => {
     const maquinaria = new Maquinaria({
         nombre: req.body.nombre,
+        codigo: req.body.codigo,
         frecuencia: req.body.frecuencia,
     });
 
