@@ -28,6 +28,7 @@ require('../models/clientes/TipoClientes');
 //empleados
 
 //inventario
+require('../models/inventario/Insumos');
 
 //maquinaria
 require('../models/maquinaria/Maquinarias');
