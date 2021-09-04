@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const ClientesSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -50,5 +50,5 @@ const ClientesSchema = mongoose.Schema({
         required: true,
     }
 });
-
+ClientesSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Clientes', ClientesSchema);

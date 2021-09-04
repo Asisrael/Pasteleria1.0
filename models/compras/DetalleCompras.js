@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const DetalleComprasSchema = mongoose.Schema({
     cantidad: {
         type: String,
@@ -36,21 +36,6 @@ const DetalleComprasSchema = mongoose.Schema({
         ref: 'Productos',
         required: true,
     },
-    decoraciones: {
-        type: Schema.ObjectId,
-        ref: 'MateriaDecoraciones',
-        required: true,
-    },
-    pasteles: {
-        type: Schema.ObjectId,
-        ref: 'MateriaPasteles',
-        required: true,
-    },
-    variedades: {
-        type: Schema.ObjectId,
-        ref: 'Variedades',
-        required: true,
-    },
 });
-
+DetalleComprasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('DetalleCompras', DetalleComprasSchema);

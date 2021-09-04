@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const RecetasSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -21,5 +21,5 @@ const RecetasSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+RecetasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Recetas', RecetasSchema);

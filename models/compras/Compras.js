@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const ComprasSchema = mongoose.Schema({
     fecha_compra: {
         type: Date,
@@ -41,5 +41,5 @@ const ComprasSchema = mongoose.Schema({
         required: true,
     },
 });
-
+ComprasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Compras', ComprasSchema);

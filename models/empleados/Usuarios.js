@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const UsuariosSchema = mongoose.Schema({
     user: {
         type: String,
@@ -52,5 +52,5 @@ const UsuariosSchema = mongoose.Schema({
         default: Date.now()
     },
 });
-
+UsuariosSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Usuarios', UsuariosSchema);

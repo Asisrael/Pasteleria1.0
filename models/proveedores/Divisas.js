@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const DivisasSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -21,5 +21,5 @@ const DivisasSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+DivisasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Divisas', DivisasSchema);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const ProveedoresSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -55,5 +55,5 @@ const ProveedoresSchema = mongoose.Schema({
         required: true,
     }
 });
-
+ProveedoresSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Proveedores', ProveedoresSchema);

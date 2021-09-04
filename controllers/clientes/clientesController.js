@@ -15,39 +15,48 @@ exports.mostrarClientes = async (req, res) => {
 }
 
 exports.mostrarClientesPaginados = async (req, res) => {
-    let actualPage = parseInt(req.body.page);
-    let perPage = parseInt(req.body.perPage);
-    let showed = ((actualPage - 1) * perPage);
-    let filter = req.body.filter;
-    let order = req.body.order;
-    if (order === 'asc') {
-        order = -1;
+    let actualPage = parseInt(req.query.page);
+    let perPage = parseInt(req.query.per_page);
+    let filter = req.query.sort;
+    let search = req.query.search;
+    let order = req.query.order;
+    if(!order){
+        filter='registro';
+        order='desc';
     }
-    else if (order === 'desc') {
-        order = 1
+    order = (order =='desc'|| order == -1)? -1 : 1;
+    let columna=req.query.columna;
+    let result='';
+   if(columna!='tipo_cliente'){
+        const regex = new RegExp(search, 'i');
+     result= await Clientes.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]},populate:{
+        path: 'tipo_cliente',
+        select: '_id nombre'
+    }});
+   }
+   else { if(search!='') {result= await Clientes.paginate({[columna]:search},{limit:perPage,page:actualPage,sort:{[filter]:[order]},populate:{
+    path: 'tipo_cliente',
+    select: '_id nombre'
+}});}
+   else {result= await Clientes.paginate({},{limit:perPage,page:actualPage,sort:{[filter]:[order]},populate:{
+    path: 'tipo_cliente',
+    select: '_id nombre'
+}});}
     }
-    let totalPages;
-    let totalItems;
-    let mod;
-    Clientes.count().then(function (count) {
-        totalItems = count;
-        mod = (totalItems % perPage);
-        if (mod === 0) {
-            totalPages = (totalItems / perPage);
-        }
-        else {
-            totalPages = parseInt(((totalItems / perPage) + 1));
-        }
-    })
-    const clientes = await Clientes.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
-    if (clientes.length === 0) {
+    
+    if (result.length === 0) {
         return res.send('No se encontraron clientes');
     }
     else {
         let pagination = {
-            data: clientes,
-            actualPage: actualPage,
-            totalPages: totalPages
+            data: result.docs,
+            current_page: result.page,
+            last_page: result.totalPages,
+            from: 1,
+            per_page: result.limit,
+            status: true,
+            to: result.limit,
+            total: result.totalDocs,
         }
         res.send(pagination);
     }

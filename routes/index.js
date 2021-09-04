@@ -46,6 +46,7 @@ const proveedoresController = require('../controllers/proveedores/proveedoresCon
 //rutas para recetas
 const recetasController = require('../controllers/recetas/recetasController');
 const recetasventasController = require('../controllers/recetas/recetasventasController');
+const tiendasController = require('../controllers/inventario/tiendasController');
 const tiporecetasController = require('../controllers/recetas/tiporecetasController');
 
 //rutas para ventas
@@ -212,6 +213,14 @@ module.exports = function () {
     router.post('/tiposproducto_actualizar', tipoproductosController.actualizarTipoProductos);
     router.post('/tiposproducto_eliminar', tipoproductosController.eliminarTipoProductos);
     router.post('/tiposproducto_activar', tipoproductosController.activarTipoProductos);
+
+    //tiendas
+    router.get('/tiendas', tiendasController.mostrarTiendas);
+    router.get('/tiendas_paginar', tiendasController.mostrarTiendasPaginados);
+    router.post('/tiendas_crear', tiendasController.crearTiendas);
+    router.post('/tiendas_actualizar', tiendasController.actualizarTiendas);
+    router.post('/tiendas_eliminar', tiendasController.eliminarTiendas);
+    router.post('/tiendas_activar', tiendasController.activarTiendas);
 
     //MAQUINARIA
     //maquinaria

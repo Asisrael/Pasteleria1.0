@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const IngresoCajasSchema = mongoose.Schema({
     registro: {
         type: Date,
@@ -27,5 +27,5 @@ const IngresoCajasSchema = mongoose.Schema({
         required: true,
     }
 });
-
+IngresoCajasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('IngresoCajas', IngresoCajasSchema);

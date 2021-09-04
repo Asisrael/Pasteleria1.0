@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const CuentaBancariaSchema = mongoose.Schema({
     total: {
         type: String,
@@ -27,5 +27,5 @@ const CuentaBancariaSchema = mongoose.Schema({
         required: true,
     }
 });
-
+CuentaBancariaSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('CuentaBancaria', CuentaBancariaSchema);

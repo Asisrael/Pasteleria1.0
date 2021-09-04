@@ -1,20 +1,20 @@
-const TipoClientes = require('../../models/clientes/TipoClientes');
+const Tiendas = require('../../models/inventario/Tiendas');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
-exports.mostrarTipoClientes = async (req, res) => {
-    const tipos = await TipoClientes.find();
+exports.mostrarTiendas = async (req, res) => {
+    const tiendas = await Tiendas.find();
 
-    if (tipos.length === 0) {
-        return res.send('No se encontraron tipos de cliente');
+    if (tiendas.length === 0) {
+        return res.send('No se encontraron tiendas');
     }
     else {
-        res.send(tipos);
+        res.send(tiendas);
     }
 }
 
-exports.mostrarTipoClientesPaginados = async (req, res) => {
+exports.mostrarTiendasPaginados = async (req, res) => {
     let actualPage = parseInt(req.query.page);
     let perPage = parseInt(req.query.per_page);
     let filter = req.query.sort;
@@ -29,11 +29,11 @@ exports.mostrarTipoClientesPaginados = async (req, res) => {
    
    
     const regex = new RegExp(search, 'i');
-    result= await TipoClientes.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]}});
+    result= await Tiendas.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]}});
        
        
     if (result.length === 0) {
-        return res.send('No se encontraron tipos de cliente');
+        return res.send('No se encontraron tiendas');
     }
     else {
         let pagination = {
@@ -50,22 +50,28 @@ exports.mostrarTipoClientesPaginados = async (req, res) => {
     }
 }
 
-exports.crearTipoClientes = async (req, res) => {
-    const tipos = new TipoClientes({
+exports.crearTiendas = async (req, res) => {
+    const tiendas = new Tiendas({
         nombre: req.body.nombre,
+        direccion: req.body.direccion,
+        latitud: req.body.latitud,
+        longitud: req.body.longitud,
     });
 
-    tipos.save(function (err, tipos) {
+    tiendas.save(function (err, tiendas) {
         if (err) return res.send(500, err.message);
-        res.status(200).jsonp(tipos);
+        res.status(200).jsonp(tiendas);
     });
 }
 
-exports.actualizarTipoClientes = async (req, res) => {
+exports.actualizarTiendas = async (req, res) => {
     const body = req.body;
-    TipoClientes.updateOne({ _id: body._id }, {
+    Tiendas.updateOne({ _id: body._id }, {
         $set: {
-            nombre: body.nombre,
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: body.estado
@@ -75,7 +81,7 @@ exports.actualizarTipoClientes = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo actualizar el tipo de cliente',
+                    msg: 'No se pudo actualizar la tienda',
                     err
                 });
             }
@@ -89,11 +95,14 @@ exports.actualizarTipoClientes = async (req, res) => {
     )
 }
 
-exports.eliminarTipoClientes = async (req, res) => {
+exports.eliminarTiendas = async (req, res) => {
     const body = req.body;
-    TipoClientes.updateOne({ _id: body._id }, {
+    Tiendas.updateOne({ _id: body._id }, {
         $set: {
-            nombre: body.nombre,
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'INACTIVO'
@@ -103,7 +112,7 @@ exports.eliminarTipoClientes = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo eliminar el tipo de cliente',
+                    msg: 'No se pudo eliminar la tienda',
                     err
                 });
             }
@@ -116,11 +125,15 @@ exports.eliminarTipoClientes = async (req, res) => {
         }
     )
 }
-exports.activarTipoClientes = async (req, res) => {
+
+exports.activarTiendas = async (req, res) => {
     const body = req.body;
-    TipoClientes.updateOne({ _id: body._id }, {
+    Tiendas.updateOne({ _id: body._id }, {
         $set: {
-            nombre: body.nombre,
+            nombre: req.body.nombre,
+            direccion: req.body.direccion,
+            latitud: req.body.latitud,
+            longitud: req.body.longitud,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'ACTIVO'
@@ -130,7 +143,7 @@ exports.activarTipoClientes = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo activar el tipo de cliente',
+                    msg: 'No se pudo activar la tienda',
                     err
                 });
             }

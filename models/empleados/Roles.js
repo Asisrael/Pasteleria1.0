@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const RolesSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -21,5 +21,5 @@ const RolesSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+RolesSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Roles', RolesSchema);

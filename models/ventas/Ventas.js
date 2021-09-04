@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const VentasSchema = mongoose.Schema({
     fecha_venta: {
         type: Date,
@@ -45,5 +45,5 @@ const VentasSchema = mongoose.Schema({
         required: true,
     },
 });
-
+VentasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Ventas', VentasSchema);

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const TipoClientesSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -21,5 +21,5 @@ const TipoClientesSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+TipoClientesSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('TipoClientes', TipoClientesSchema);

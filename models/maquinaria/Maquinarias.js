@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const MaquinariasSchema = mongoose.Schema({
     nombre: {
         type: String,
@@ -26,5 +26,5 @@ const MaquinariasSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
+MaquinariasSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Maquinarias', MaquinariasSchema);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+const mongoosePaginate = require('mongoose-paginate-v2');
 const CierresSchema = mongoose.Schema({
     cantidad: {
         type: String,
@@ -27,5 +27,5 @@ const CierresSchema = mongoose.Schema({
         required: true,
     }
 });
-
+CierresSchema.plugin(mongoosePaginate)
 module.exports = mongoose.model('Cierres', CierresSchema);
