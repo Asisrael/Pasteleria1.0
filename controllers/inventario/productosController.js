@@ -1,10 +1,10 @@
-const Insumos = require('../../models/inventario/Insumos');
+const Productos = require('../../models/inventario/Productos');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
-exports.mostrarInsumos = async (req, res) => {
-      const tipos = await Insumos.find();
+exports.mostrarProductos = async (req, res) => {
+      const tipos = await Productos.find();
 
     if (tipos.length === 0) {
         return res.send('No se encontraron tipos de producto');
@@ -14,7 +14,7 @@ exports.mostrarInsumos = async (req, res) => {
     }
 }
 
-exports.mostrarInsumosPaginados = async (req, res) => {
+exports.mostrarProductosPaginados = async (req, res) => {
   let actualPage = parseInt(req.body.page);
     let perPage = parseInt(req.body.perPage);
     let showed = ((actualPage - 1) * perPage);
@@ -29,7 +29,7 @@ exports.mostrarInsumosPaginados = async (req, res) => {
     let totalPages;
     let totalItems;
     let mod;
-    Insumos.count().then(function (count) {
+    Productos.count().then(function (count) {
         totalItems = count;
         mod = (totalItems % perPage);
         if (mod === 0) {
@@ -39,7 +39,7 @@ exports.mostrarInsumosPaginados = async (req, res) => {
             totalPages = parseInt(((totalItems / perPage) + 1));
         }
     })
-    const tipos = await Insumos.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
+    const tipos = await Productos.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
     if (tipos.length === 0) {
         return res.send('No se encontraron tipos de productos');
     }
@@ -53,8 +53,8 @@ exports.mostrarInsumosPaginados = async (req, res) => {
     }
 }
 
-exports.crearInsumos = async (req, res) => {
-    const tipos = new Insumos({
+exports.crearProductos = async (req, res) => {
+    const tipos = new Productos({
         nombre: req.body.nombre,
     });
 
@@ -64,9 +64,9 @@ exports.crearInsumos = async (req, res) => {
     });
 }
 
-exports.actualizarInsumos = async (req, res) => {
+exports.actualizarProductos = async (req, res) => {
    const body = req.body;
-    Insumos.updateOne({ _id: body._id }, {
+    Productos.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
             actualizacion: Date.now(),
@@ -92,9 +92,9 @@ exports.actualizarInsumos = async (req, res) => {
     )
 }
 
-exports.eliminarInsumos = async (req, res) => {
+exports.eliminarProductos = async (req, res) => {
       const body = req.body;
-    Insumos.updateOne({ _id: body._id }, {
+    Productos.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
             actualizacion: Date.now(),
@@ -119,9 +119,9 @@ exports.eliminarInsumos = async (req, res) => {
         }
     )  
 }
-exports.activarInsumos = async (req, res) => {
+exports.activarProductos = async (req, res) => {
 const body = req.body;
-    Insumos.updateOne({ _id: body._id }, {
+    Productos.updateOne({ _id: body._id }, {
         $set: {
             nombre: body.nombre,
             actualizacion: Date.now(),

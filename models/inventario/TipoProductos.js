@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
-const InsumosSchema = mongoose.Schema({
+const mongoosePaginate = require('mongoose-paginate-v2');
+const TipoProductosSchema = mongoose.Schema({
     nombre: {
         type: String,
         trim: true,
@@ -21,5 +21,5 @@ const InsumosSchema = mongoose.Schema({
         default: 'ACTIVO',
     }
 });
-
-module.exports = mongoose.model('Insumos', Insumos);
+TipoProductosSchema.plugin(mongoosePaginate)
+module.exports = mongoose.model('TipoProductos', TipoProductosSchema);

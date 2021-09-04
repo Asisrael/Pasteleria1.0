@@ -31,10 +31,9 @@ const rolesController = require('../controllers/empleados/rolesController');
 const usuariosController = require('../controllers/empleados/usuariosController');
 
 //rutas para inventario
-const insumosController = require('../controllers/inventario/insumosController');
-const materiadecoracionesController = require('../controllers/inventario/materiadecoracionesController');
-const materiapastelesController = require('../controllers/inventario/materiapastelesController');
-const variedadesController = require('../controllers/inventario/variedadesController');
+const productosController = require('../controllers/inventario/productosController');
+const ajusteinventariosController = require('../controllers/inventario/ajusteinventariosController');
+const tipoproductosController = require('../controllers/inventario/tipoproductosController');
 
 //rutas para maquinaria
 const maquinariaController = require('../controllers/maquinaria/maquinariaController');
@@ -190,37 +189,29 @@ module.exports = function () {
     router.post('/usuarios_activar', usuariosController.activarUsuarios);
 
     //INVENTARIO
-    //insumos
-    router.get('/insumos', insumosController.mostrarInsumos);
-    router.get('/insumos_paginar', insumosController.mostrarInsumosPaginados);
-    router.post('/insumos_crear', insumosController.crearInsumos);
-    router.post('/insumos_actualizar', insumosController.actualizarInsumos);
-    router.post('/insumos_eliminar', insumosController.eliminarInsumos);
-    router.post('/insumos_activar', insumosController.activarInsumos);
+    //productos
+    router.get('/productos', productosController.mostrarProductos);
+    router.get('/productos_paginar', productosController.mostrarProductosPaginados);
+    router.post('/productos_crear', productosController.crearProductos);
+    router.post('/productos_actualizar', productosController.actualizarProductos);
+    router.post('/productos_eliminar', productosController.eliminarProductos);
+    router.post('/productos_activar', productosController.activarProductos);
 
-    //materiadecoraciones
-    router.get('/materiadecoraciones', materiadecoracionesController.mostrarMateriaDecoraciones);
-    router.get('/materiadecoraciones_paginar', materiadecoracionesController.mostrarMateriaDecoracionesPaginados);
-    router.post('/materiadecoraciones_crear', materiadecoracionesController.crearMateriaDecoraciones);
-    router.post('/materiadecoraciones_actualizar', materiadecoracionesController.actualizarMateriaDecoraciones);
-    router.post('/materiadecoraciones_eliminar', materiadecoracionesController.eliminarMateriaDecoraciones);
-    router.post('/materiadecoraciones_activar', materiadecoracionesController.activarMateriaDecoraciones);
+    //ajuste inventarios
+    router.get('/ajusteinventarios', ajusteinventariosController.mostrarAjusteInventarios);
+    router.get('/ajusteinventarios_paginar', ajusteinventariosController.mostrarAjusteInventariosPaginados);
+    router.post('/ajusteinventarios_crear', ajusteinventariosController.crearAjusteInventarios);
+    router.post('/ajusteinventarios_actualizar', ajusteinventariosController.actualizarAjusteInventarios);
+    router.post('/ajusteinventarios_eliminar', ajusteinventariosController.eliminarAjusteInventarios);
+    router.post('/ajusteinventarios_activar', ajusteinventariosController.activarAjusteInventarios);
 
-    //materiapasteles
-    router.get('/materiapasteles', materiapastelesController.mostrarMateriaPasteles);
-    router.get('/materiapasteles_paginar', materiapastelesController.mostrarMateriaPastelesPaginados);
-    router.post('/materiapasteles_crear', materiapastelesController.crearMateriaPasteles);
-    router.post('/materiapasteles_actualizar', materiapastelesController.actualizarMateriaPasteles);
-    router.post('/materiapasteles_eliminar', materiapastelesController.eliminarMateriaPasteles);
-    router.post('/materiapasteles_activar', materiapastelesController.activarMateriaPasteles);
-
-    //variedades
-    router.get('/variedades', variedadesController.mostrarVariedades);
-    router.get('/variedades_paginar', variedadesController.mostrarVariedadesPaginados);
-    router.post('/variedades_crear', variedadesController.crearVariedades);
-    router.post('/variedades_actualizar', variedadesController.actualizarVariedades);
-    router.post('/variedades_eliminar', variedadesController.eliminarVariedades);
-    router.post('/variedades_activar', variedadesController.activarVariedades);
+    //tipo productos
+    router.get('/tiposproducto', tipoproductosController.mostrarTipoProductos);
+    router.get('/tiposproducto_paginar', tipoproductosController.mostrarTipoProductosPaginados);
+    router.post('/tiposproducto_crear', tipoproductosController.crearTipoProductos);
+    router.post('/tiposproducto_actualizar', tipoproductosController.actualizarTipoProductos);
+    router.post('/tiposproducto_eliminar', tipoproductosController.eliminarTipoProductos);
+    router.post('/tiposproducto_activar', tipoproductosController.activarTipoProductos);
 
     //MAQUINARIA
     //maquinaria

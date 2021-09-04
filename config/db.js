@@ -22,13 +22,23 @@ require('../models/clientes/Clientes');
 require('../models/clientes/TipoClientes');
 
 //compras
+require('../models/compras/Compras');
+require('../models/compras/DetalleCompras');
 
 //creditos
+require('../models/creditos/CreditoCompras');
+require('../models/creditos/CreditoVentas');
 
 //empleados
+require('../models/empleados/Roles');
+require('../models/empleados/RolesAsignados');
+require('../models/empleados/Usuarios');
 
 //inventario
-require('../models/inventario/Insumos');
+require('../models/inventario/Productos');
+require('../models/inventario/AjusteInventarios');
+require('../models/inventario/TipoProductos');
+require('../models/inventario/Tiendas');
 
 //maquinaria
 require('../models/maquinaria/Maquinarias');
@@ -39,5 +49,10 @@ require('../models/proveedores/Marcas');
 require('../models/proveedores/Proveedores');
 
 //recetas
+require('../models/recetas/RecetasVentas');
+require('../models/recetas/Recetas');
+require('../models/recetas/TipoRecetas');
 
 //ventas
+require('../models/ventas/DetalleVentas');
+require('../models/ventas/Ventas');

@@ -31,9 +31,9 @@ const DetalleVentasSchema = mongoose.Schema({
         ref: 'Ventas',
         required: true,
     },
-    insumos: {
+    productos: {
         type: Schema.ObjectId,
-        ref: 'Insumos',
+        ref: 'Productos',
         required: true,
     },
     decoraciones: {
