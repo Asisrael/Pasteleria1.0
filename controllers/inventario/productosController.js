@@ -4,145 +4,75 @@ const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
 exports.mostrarProductos = async (req, res) => {
-      const tipos = await Productos.find();
+    const productos = await Productos.find();
 
-    if (tipos.length === 0) {
-        return res.send('No se encontraron tipos de producto');
+    if (productos.length === 0) {
+        return res.send('No se encontraron productos');
     }
     else {
-        res.send(tipos);
+        res.send(productos);
     }
 }
 
 exports.mostrarProductosPaginados = async (req, res) => {
-  let actualPage = parseInt(req.body.page);
-    let perPage = parseInt(req.body.perPage);
-    let showed = ((actualPage - 1) * perPage);
-    let filter = req.body.filter;
-    let order = req.body.order;
-    if (order === 'asc') {
-        order = -1;
+    let actualPage = parseInt(req.query.page);
+    let perPage = parseInt(req.query.per_page);
+    let filter = req.query.sort;
+    let order = req.query.order;
+    let search = req.query.search;
+    if(!order){
+        filter='registro';
+        order='desc';
     }
-    else if (order === 'desc') {
-        order = 1
-    }
-    let totalPages;
-    let totalItems;
-    let mod;
-    Productos.count().then(function (count) {
-        totalItems = count;
-        mod = (totalItems % perPage);
-        if (mod === 0) {
-            totalPages = (totalItems / perPage);
-        }
-        else {
-            totalPages = parseInt(((totalItems / perPage) + 1));
-        }
-    })
-    const tipos = await Productos.find().skip(showed).limit(perPage).lean().sort({ nombre: order });
-    if (tipos.length === 0) {
-        return res.send('No se encontraron tipos de productos');
+    order = (order =='desc'|| order == -1)? -1 : 1;
+    let columna=req.query.columna;
+   
+   
+    const regex = new RegExp(search, 'i');
+    result= await Productos.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]},populate:[{
+        path: 'color',
+        select: '_id nombre'
+    },{
+        path: 'tipo_producto',
+        select: '_id nombre'
+    },{
+        path: 'talla',
+        select: '_id nombre'
+    },{
+        path: 'marca',
+        select: '_id nombre'
+    }]});
+       
+       
+    if (result.length === 0) {
+        return res.send('No se encontraron productos');
     }
     else {
         let pagination = {
-            data: tipos,
-            actualPage: actualPage,
-            totalPages: totalPages
+            data: result.docs,
+            current_page: result.page,
+            last_page: result.totalPages,
+            from: 1,
+            per_page: result.limit,
+            status: true,
+            to: result.limit,
+            total: result.totalDocs,
         }
         res.send(pagination);
     }
 }
 
 exports.crearProductos = async (req, res) => {
-    const tipos = new Productos({
-        nombre: req.body.nombre,
-    });
-
-    tipos.save(function (err, tipos) {
-        if (err) return res.send(500, err.message);
-        res.status(200).jsonp(tipos);
-    });
+    
 }
 
 exports.actualizarProductos = async (req, res) => {
-   const body = req.body;
-    Productos.updateOne({ _id: body._id }, {
-        $set: {
-            nombre: body.nombre,
-            actualizacion: Date.now(),
-            registro: body.registro,
-            estado: body.estado
-        }
-    },
-        function (err, info) {
-            if (err) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo actualizar el tipo de producto',
-                    err
-                });
-            }
-            else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
-            }
-        }
-    )
+  
 }
 
 exports.eliminarProductos = async (req, res) => {
-      const body = req.body;
-    Productos.updateOne({ _id: body._id }, {
-        $set: {
-            nombre: body.nombre,
-            actualizacion: Date.now(),
-            registro: body.registro,
-            estado: 'INACTIVO'
-        }
-    },
-        function (err, info) {
-            if (err) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo eliminar el tipo de producto',
-                    err
-                });
-            }
-            else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
-            }
-        }
-    )  
+    
 }
 exports.activarProductos = async (req, res) => {
-const body = req.body;
-    Productos.updateOne({ _id: body._id }, {
-        $set: {
-            nombre: body.nombre,
-            actualizacion: Date.now(),
-            registro: body.registro,
-            estado: 'ACTIVO'
-        }
-    },
-        function (err, info) {
-            if (err) {
-                res.json({
-                    resultado: false,
-                    msg: 'No se pudo activar el tipo de Porducto',
-                    err
-                });
-            }
-            else {
-                res.json({
-                    resultado: true,
-                    info: info
-                })
-            }
-        }
-    )
+
 }
