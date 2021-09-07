@@ -9,6 +9,7 @@ const RecetasSchema = mongoose.Schema({
     receta_base: {
         type: Array,
     },
+    
     registro: {
         type: Date,
         default: Date.now()
