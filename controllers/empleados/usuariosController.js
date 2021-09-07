@@ -101,16 +101,22 @@ exports.crearUsuarios = async (req, res) => {
 
 exports.actualizarUsuarios = async (req, res) => {
     const body = req.body;
+    const password = body.password;
+    let guardar;
+    //hash password
+    const salt = await md5(password);
+    guardar = salt;
     Usuarios.updateOne({ _id: body._id }, {
         $set: {
-            user: req.body.user,
-            nombre: req.body.nombre,
-            telefono: req.body.telefono,
-            correo: req.body.correo,
-            password: req.body.password,
-            cui: req.body.cui,
-            contratacion: req.body.contratacion,
-            puesto: req.body.puesto,
+            user: body.user,
+            password: guardar,
+            nombre: body.nombre,
+            telefono: body.telefono,
+            correo: body.correo,
+            cui: body.cui,
+            contratacion: body.contratacion,
+            puesto: body.puesto,
+            tienda: body.tienda,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: body.estado
@@ -135,8 +141,83 @@ exports.actualizarUsuarios = async (req, res) => {
 }
 
 exports.eliminarUsuarios = async (req, res) => {
-
+    const body = req.body;
+    const password = body.password;
+    let guardar;
+    //hash password
+    const salt = await md5(password);
+    guardar = salt;
+    Usuarios.updateOne({ _id: body._id }, {
+        $set: {
+            user: body.user,
+            password: guardar,
+            nombre: body.nombre,
+            telefono: body.telefono,
+            correo: body.correo,
+            cui: body.cui,
+            contratacion: body.contratacion,
+            puesto: body.puesto,
+            tienda: body.tienda,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'INACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo eliminar el usuario',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
-exports.activarUsuarios = async (req, res) => {
 
+exports.activarUsuarios = async (req, res) => {
+    const body = req.body;
+    const password = body.password;
+    let guardar;
+    //hash password
+    const salt = await md5(password);
+    guardar = salt;
+    Usuarios.updateOne({ _id: body._id }, {
+        $set: {
+            user: body.user,
+            password: guardar,
+            nombre: body.nombre,
+            telefono: body.telefono,
+            correo: body.correo,
+            cui: body.cui,
+            contratacion: body.contratacion,
+            puesto: body.puesto,
+            tienda: body.tienda,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar el usuario',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }

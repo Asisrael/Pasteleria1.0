@@ -1,20 +1,20 @@
-const Tiendas = require('../../models/inventario/Tiendas');
+const Lotes = require('../../models/inventario/Lotes');
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
-exports.mostrarTiendas = async (req, res) => {
-    const tiendas = await Tiendas.find();
+exports.mostrarLotes = async (req, res) => {
+    const lotes = await Lotes.find();
 
-    if (tiendas.length === 0) {
-        return res.send('No se encontraron tiendas');
+    if (lotes.length === 0) {
+        return res.send('No se encontraron lotes');
     }
     else {
-        res.send(tiendas);
+        res.send(lotes);
     }
 }
 
-exports.mostrarTiendasPaginados = async (req, res) => {
+exports.mostrarLotesPaginados = async (req, res) => {
     let actualPage = parseInt(req.query.page);
     let perPage = parseInt(req.query.per_page);
     let filter = req.query.sort;
@@ -29,11 +29,11 @@ exports.mostrarTiendasPaginados = async (req, res) => {
    
    
     const regex = new RegExp(search, 'i');
-    result= await Tiendas.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]}});
+    result= await Lotes.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]}});
        
        
     if (result.length === 0) {
-        return res.send('No se encontraron tiendas');
+        return res.send('No se encontraron lotes');
     }
     else {
         let pagination = {
@@ -50,28 +50,28 @@ exports.mostrarTiendasPaginados = async (req, res) => {
     }
 }
 
-exports.crearTiendas = async (req, res) => {
-    const tiendas = new Tiendas({
-        nombre: req.body.nombre,
-        direccion: req.body.direccion,
-        latitud: req.body.latitud,
-        longitud: req.body.longitud,
+exports.crearLotes = async (req, res) => {
+    const lotes = new Lotes({
+        fecha_caducidad: req.body.fecha_caducidad,
+        fecha_ingresado: req.body.fecha_ingresado,
+        codigo_lote: req.body.codigo_lote,
+        productos: req.body.productos,
     });
 
-    tiendas.save(function (err, tiendas) {
+    lotes.save(function (err, lotes) {
         if (err) return res.send(500, err.message);
-        res.status(200).jsonp(tiendas);
+        res.status(200).jsonp(lotes);
     });
 }
 
-exports.actualizarTiendas = async (req, res) => {
+exports.actualizarLotes = async (req, res) => {
     const body = req.body;
-    Tiendas.updateOne({ _id: body._id }, {
+    Lotes.updateOne({ _id: body._id }, {
         $set: {
-            nombre: req.body.nombre,
-            direccion: req.body.direccion,
-            latitud: req.body.latitud,
-            longitud: req.body.longitud,
+            fecha_caducidad: req.body.fecha_caducidad,
+            fecha_ingresado: req.body.fecha_ingresado,
+            codigo_lote: req.body.codigo_lote,
+            productos: req.body.productos,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: body.estado
@@ -81,7 +81,7 @@ exports.actualizarTiendas = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo actualizar la tienda',
+                    msg: 'No se pudo actualizar el lote',
                     err
                 });
             }
@@ -95,14 +95,14 @@ exports.actualizarTiendas = async (req, res) => {
     )
 }
 
-exports.eliminarTiendas = async (req, res) => {
+exports.eliminarLotes = async (req, res) => {
     const body = req.body;
-    Tiendas.updateOne({ _id: body._id }, {
+    Lotes.updateOne({ _id: body._id }, {
         $set: {
-            nombre: req.body.nombre,
-            direccion: req.body.direccion,
-            latitud: req.body.latitud,
-            longitud: req.body.longitud,
+            fecha_caducidad: req.body.fecha_caducidad,
+            fecha_ingresado: req.body.fecha_ingresado,
+            codigo_lote: req.body.codigo_lote,
+            productos: req.body.productos,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'INACTIVO'
@@ -112,7 +112,7 @@ exports.eliminarTiendas = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo eliminar la tienda',
+                    msg: 'No se pudo eliminar el lote',
                     err
                 });
             }
@@ -126,14 +126,14 @@ exports.eliminarTiendas = async (req, res) => {
     )
 }
 
-exports.activarTiendas = async (req, res) => {
+exports.activarLotes = async (req, res) => {
     const body = req.body;
-    Tiendas.updateOne({ _id: body._id }, {
+    Lotes.updateOne({ _id: body._id }, {
         $set: {
-            nombre: req.body.nombre,
-            direccion: req.body.direccion,
-            latitud: req.body.latitud,
-            longitud: req.body.longitud,
+            fecha_caducidad: req.body.fecha_caducidad,
+            fecha_ingresado: req.body.fecha_ingresado,
+            codigo_lote: req.body.codigo_lote,
+            productos: req.body.productos,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'ACTIVO'
@@ -143,7 +143,7 @@ exports.activarTiendas = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo activar la tienda',
+                    msg: 'No se pudo activar el lote',
                     err
                 });
             }

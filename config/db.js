@@ -38,7 +38,7 @@ require('../models/empleados/Usuarios');
 require('../models/inventario/Productos');
 require('../models/inventario/AjusteInventarios');
 require('../models/inventario/TipoProductos');
-require('../models/inventario/Tiendas');
+require('../models/inventario/Negocios');
 
 //maquinaria
 require('../models/maquinaria/Maquinarias');

@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate-v2');
-const RecetasSchema = mongoose.Schema({
-    nombre: {
-        type: String,
-        trim: true,
-        required: true
+const LotesSchema = mongoose.Schema({
+    fecha_ingresado: {
+        type: Date,
     },
-    receta_base: {
-        type: Array,
+    fecha_caducidad: {
+        type: Date,
     },
     registro: {
         type: Date,
@@ -22,7 +21,12 @@ const RecetasSchema = mongoose.Schema({
         trim: true,
         required: true,
         default: 'ACTIVO',
-    }
+    },
+    productos: {
+        type: Schema.ObjectId,
+        ref: 'Productos',
+        required: true,
+    },
 });
-RecetasSchema.plugin(mongoosePaginate)
-module.exports = mongoose.model('Recetas', RecetasSchema);
+LotesSchema.plugin(mongoosePaginate)
+module.exports = mongoose.model('Lotes', LotesSchema);

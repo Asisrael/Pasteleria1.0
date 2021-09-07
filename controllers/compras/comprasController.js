@@ -51,16 +51,118 @@ exports.mostrarComprasPaginados = async (req, res) => {
 }
 
 exports.crearCompras = async (req, res) => {
+    const compras = new Compras({
+        fecha_compra: req.body.fecha_compra,
+        total: req.body.total,
+        iva_compra: req.body.iva_compra,
+        proveedor: req.body.proveedor,
+        responsable: req.body.responsable,
+    });
 
+    compras.save(function (err, compras) {
+        if (err) return res.send(500, err.message);
+        res.status(200).jsonp(compras);
+    });
 }
 
 exports.actualizarCompras = async (req, res) => {
-
+    const body = req.body;
+    Compras.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_compra: body.fecha_compra,
+            total: body.total,
+            iva_compra: body.iva_compra,
+            proveedor: body.proveedor,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar la compra',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
 
 exports.eliminarCompras = async (req, res) => {
-
+    const body = req.body;
+    Compras.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_compra: body.fecha_compra,
+            total: body.total,
+            iva_compra: body.iva_compra,
+            proveedor: body.proveedor,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'INACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo eliminar la compra',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
-exports.activarCompras = async (req, res) => {
 
+exports.activarCompras = async (req, res) => {
+    const body = req.body;
+    Compras.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_compra: body.fecha_compra,
+            total: body.total,
+            iva_compra: body.iva_compra,
+            proveedor: body.proveedor,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar la compra',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }

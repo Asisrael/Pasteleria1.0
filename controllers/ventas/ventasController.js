@@ -51,16 +51,116 @@ exports.mostrarVentasPaginados = async (req, res) => {
 }
 
 exports.crearVentas = async (req, res) => {
+    const ventas = new Ventas({
+        fecha_venta: req.body.fecha_venta,
+        total: req.body.total,
+        iva_venta: req.body.iva_venta,
+        descuento: req.body.descuento,
+        cliente: req.body.cliente,
+        responsable: req.body.responsable,
+    });
 
+    ventas.save(function (err, ventas) {
+        if (err) return res.send(500, err.message);
+        res.status(200).jsonp(ventas);
+    });
 }
 
 exports.actualizarVentas = async (req, res) => {
-
+    const body = req.body;
+    Ventas.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_venta: body.fecha_venta,
+            total: body.total,
+            iva_venta: body.iva_venta,
+            descuento: body.descuento,
+            cliente: body.cliente,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar la venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
 
 exports.eliminarVentas = async (req, res) => {
-    
+    const body = req.body;
+    Ventas.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_venta: body.fecha_venta,
+            total: body.total,
+            iva_venta: body.iva_venta,
+            descuento: body.descuento,
+            cliente: body.cliente,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'INACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo eliminar la venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
-exports.activarVentas = async (req, res) => {
 
+exports.activarVentas = async (req, res) => {
+    const body = req.body;
+    Ventas.updateOne({ _id: body._id }, {
+        $set: {
+            fecha_venta: body.fecha_venta,
+            total: body.total,
+            iva_venta: body.iva_venta,
+            descuento: body.descuento,
+            cliente: body.cliente,
+            responsable: body.responsable,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar la venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }

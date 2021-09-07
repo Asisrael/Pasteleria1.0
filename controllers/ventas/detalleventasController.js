@@ -51,16 +51,108 @@ exports.mostrarDetalleVentasPaginados = async (req, res) => {
 }
 
 exports.crearDetalleVentas = async (req, res) => {
+    const detalles = new DetalleVentas({
+        cantidad: req.body.cantidad,
+        subtotal: req.body.subtotal,
+        venta: req.body.venta,
+        productos: req.body.productos,
+    });
 
+    detalles.save(function (err, detalles) {
+        if (err) return res.send(500, err.message);
+        res.status(200).jsonp(detalles);
+    });
 }
 
 exports.actualizarDetalleVentas = async (req, res) => {
-
+    const body = req.body;
+    DetalleVentas.updateOne({ _id: body._id }, {
+        $set: {
+            cantidad: req.body.cantidad,
+            subtotal: body.subtotal,
+            venta: body.venta,
+            productos: body.productos,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar el detalle de venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
 
 exports.eliminarDetalleVentas = async (req, res) => {
-    
+    const body = req.body;
+    DetalleVentas.updateOne({ _id: body._id }, {
+        $set: {
+            cantidad: req.body.cantidad,
+            subtotal: body.subtotal,
+            venta: body.venta,
+            productos: body.productos,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'INACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo eliminar el detalle de venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
-exports.activarDetalleVentas = async (req, res) => {
 
+exports.activarDetalleVentas = async (req, res) => {
+    const body = req.body;
+    DetalleVentas.updateOne({ _id: body._id }, {
+        $set: {
+            cantidad: req.body.cantidad,
+            subtotal: body.subtotal,
+            venta: body.venta,
+            productos: body.productos,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar el detalle de venta',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }

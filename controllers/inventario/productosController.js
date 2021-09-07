@@ -63,16 +63,125 @@ exports.mostrarProductosPaginados = async (req, res) => {
 }
 
 exports.crearProductos = async (req, res) => {
-    
+    const body = req.body;
+    const productos = new Productos({
+        nombre: body.nombre,
+        codigo_barras: req.body.codigo_barras,
+        caracteristicas: req.body.caracteristicas,
+        minimo: req.body.minimo,
+        precio_costo: req.body.precio_costo,
+        precio_venta: req.body.precio_venta,
+        tipo_producto: req.body.tipo_producto,
+        existencia: req.body.existencia,
+    });
+
+    productos.save(function (err, productos) {
+        if (err) return res.send(500, err.message);
+        res.status(200).jsonp(productos);
+    });
 }
 
 exports.actualizarProductos = async (req, res) => {
-  
+    const body = req.body;
+    Productos.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            codigo_barras: req.body.codigo_barras,
+            caracteristicas: req.body.caracteristicas,
+            minimo: req.body.minimo,
+            precio_costo: req.body.precio_costo,
+            precio_venta: req.body.precio_venta,
+            tipo_producto: req.body.tipo_producto,
+            existencia: req.body.existencia,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: body.estado
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo actualizar el tipo de cliente',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
 
 exports.eliminarProductos = async (req, res) => {
-    
+    const body = req.body;
+    Productos.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            codigo_barras: req.body.codigo_barras,
+            caracteristicas: req.body.caracteristicas,
+            minimo: req.body.minimo,
+            precio_costo: req.body.precio_costo,
+            precio_venta: req.body.precio_venta,
+            tipo_producto: req.body.tipo_producto,
+            existencia: req.body.existencia,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'INACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo eliminar el tipo de cliente',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }
-exports.activarProductos = async (req, res) => {
 
+exports.activarProductos = async (req, res) => {
+    const body = req.body;
+    Productos.updateOne({ _id: body._id }, {
+        $set: {
+            nombre: body.nombre,
+            codigo_barras: req.body.codigo_barras,
+            caracteristicas: req.body.caracteristicas,
+            minimo: req.body.minimo,
+            precio_costo: req.body.precio_costo,
+            precio_venta: req.body.precio_venta,
+            tipo_producto: req.body.tipo_producto,
+            existencia: req.body.existencia,
+            actualizacion: Date.now(),
+            registro: body.registro,
+            estado: 'ACTIVO'
+        }
+    },
+        function (err, info) {
+            if (err) {
+                res.json({
+                    resultado: false,
+                    msg: 'No se pudo activar el tipo de cliente',
+                    err
+                });
+            }
+            else {
+                res.json({
+                    resultado: true,
+                    info: info
+                })
+            }
+        }
+    )
 }

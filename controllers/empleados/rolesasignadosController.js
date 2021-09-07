@@ -4,28 +4,61 @@ const { validationResult } = require('express-validator');
 const md5 = require('md5')
 
 exports.mostrarRolesAsignados = async (req, res) => {
-    const roles_asignados = await RolesAsignados.find();
+    const roles = await RolesAsignados.find();
 
-    if (roles_asignados.length === 0) {
+    if (roles.length === 0) {
         return res.send('No se encontraron roles asignados');
     }
     else {
-        res.send(roles_asignados);
+        res.send(roles);
     }
 }
 
 exports.mostrarRolesAsignadosPaginados = async (req, res) => {
-
+    let actualPage = parseInt(req.query.page);
+    let perPage = parseInt(req.query.per_page);
+    let filter = req.query.sort;
+    let search = req.query.search;
+    let order = req.query.order;
+    if(!order){
+        filter='registro';
+        order='desc';
+    }
+    order = (order =='desc'|| order == -1)? -1 : 1;
+    let columna=req.query.columna;
+   
+   
+    const regex = new RegExp(search, 'i');
+    result= await RolesAsignados.paginate({[columna]:regex},{limit:perPage,page:actualPage,sort:{[filter]:[order]}});
+       
+       
+    if (result.length === 0) {
+        return res.send('No se encontraron roles');
+    }
+    else {
+        let pagination = {
+            data: result.docs,
+            current_page: result.page,
+            last_page: result.totalPages,
+            from: 1,
+            per_page: result.limit,
+            status: true,
+            to: result.limit,
+            total: result.totalDocs,
+        }
+        res.send(pagination);
+    }
 }
 
 exports.crearRolesAsignados = async (req, res) => {
-    const roles_asignados = new RolesAsignados({
-        nombre: req.body.nombre,
+    const roles = new RolesAsignados({
+        roles: req.body.roles,
+        usuarios: req.body.usuarios,
     });
 
-    roles_asignados.save(function (err, roles_asignados) {
+    roles.save(function (err, roles) {
         if (err) return res.send(500, err.message);
-        res.status(200).jsonp(roles_asignados);
+        res.status(200).jsonp(roles);
     });
 }
 
@@ -33,8 +66,8 @@ exports.actualizarRolesAsignados = async (req, res) => {
     const body = req.body;
     RolesAsignados.updateOne({ _id: body._id }, {
         $set: {
-            roles: req.body.roles,
-            usuarios: req.body.usuarios,
+            roles: body.roles,
+            usuarios: body.usuarios,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: body.estado
@@ -44,7 +77,7 @@ exports.actualizarRolesAsignados = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo actualizar el rol asignado',
+                    msg: 'No se pudieron actualizar los roles asignados',
                     err
                 });
             }
@@ -62,8 +95,8 @@ exports.eliminarRolesAsignados = async (req, res) => {
     const body = req.body;
     RolesAsignados.updateOne({ _id: body._id }, {
         $set: {
-            roles: req.body.roles,
-            usuarios: req.body.usuarios,
+            roles: body.roles,
+            usuarios: body.usuarios,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'INACTIVO'
@@ -73,7 +106,7 @@ exports.eliminarRolesAsignados = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo eliminar el rol asignado',
+                    msg: 'No se pudieron eliminar los roles asignados',
                     err
                 });
             }
@@ -86,12 +119,13 @@ exports.eliminarRolesAsignados = async (req, res) => {
         }
     )
 }
+
 exports.activarRolesAsignados = async (req, res) => {
     const body = req.body;
     RolesAsignados.updateOne({ _id: body._id }, {
         $set: {
-            roles: req.body.roles,
-            usuarios: req.body.usuarios,
+            roles: body.roles,
+            usuarios: body.usuarios,
             actualizacion: Date.now(),
             registro: body.registro,
             estado: 'ACTIVO'
@@ -101,7 +135,7 @@ exports.activarRolesAsignados = async (req, res) => {
             if (err) {
                 res.json({
                     resultado: false,
-                    msg: 'No se pudo activar el rol asignado',
+                    msg: 'No se pudieron activar los roles asignados',
                     err
                 });
             }

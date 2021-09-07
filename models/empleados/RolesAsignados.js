@@ -17,8 +17,7 @@ const RolesAsignadosSchema = mongoose.Schema({
         default: 'ACTIVO',
     },
     roles: {
-        type: Schema.ObjectId,
-        ref: 'Roles',
+        type: Array,
         required: true,
     },
     usuarios: {
